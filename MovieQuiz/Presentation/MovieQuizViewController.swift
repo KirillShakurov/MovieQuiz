@@ -15,16 +15,23 @@ final class MovieQuizViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
       super.viewWillAppear(animated)
     }
+  
+    @IBOutlet weak var noButton: UIButton!
+    @IBOutlet weak var yesButton: UIButton!
+    
     
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var counterLabel: UILabel!
-    @IBAction private func noButtonClicked(_ sender: UIButton) {
-        showAnswerResult(isCorrect: questions[currentQuestionIndex].correctAnswer)
-    }
+    
+    
+    
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        showAnswerResult(isCorrect: questions[currentQuestionIndex].correctAnswer)
-    }
+            showAnswerResult(isCorrect: questions[currentQuestionIndex].correctAnswer)
+        }
+        @IBAction private func noButtonClicked(_ sender: UIButton) {
+            showAnswerResult(isCorrect: !questions[currentQuestionIndex].correctAnswer)
+        }
 
     private var currentQuestionIndex: Int = 0
     private var correctAnswers = 0
@@ -60,6 +67,7 @@ final class MovieQuizViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showNextQuestionOrResults()
+            self.imageView.layer.borderWidth = 0
         }
     }
 
