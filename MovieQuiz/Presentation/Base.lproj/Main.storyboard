@@ -26,7 +26,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vJw-aY-2bX">
-                                <rect key="frame" x="20" y="54" width="374" height="798"/>
+                                <rect key="frame" x="20" y="54" width="374" height="808"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YEP-6l-wzf">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="23.5"/>
@@ -58,13 +58,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="aph-Ea-9sZ" userLabel="Question Label">
-                                        <rect key="frame" x="0.0" y="604.5" width="374" height="123.5"/>
+                                        <rect key="frame" x="0.0" y="604.5" width="374" height="133.5"/>
                                         <fontDescription key="fontDescription" name="YSDisplay-Bold" family="YS Display" pointSize="23"/>
                                         <color key="textColor" name="YP White (iOS)"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rWg-TH-54h">
-                                        <rect key="frame" x="0.0" y="738" width="374" height="60"/>
+                                        <rect key="frame" x="0.0" y="748" width="374" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l79-hE-GeI" userLabel="No button">
                                                 <rect key="frame" x="0.0" y="0.0" width="177" height="60"/>
@@ -112,7 +112,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="YP Black (iOS)"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vJw-aY-2bX" secondAttribute="bottom" constant="10" id="GMw-js-Z7S"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="vJw-aY-2bX" secondAttribute="bottom" id="GMw-js-Z7S"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vJw-aY-2bX" secondAttribute="trailing" constant="20" id="Ohw-3o-TN7"/>
                             <constraint firstItem="YEP-6l-wzf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Q1v-ta-ujo"/>
                             <constraint firstItem="vJw-aY-2bX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ntU-cQ-4iR"/>
