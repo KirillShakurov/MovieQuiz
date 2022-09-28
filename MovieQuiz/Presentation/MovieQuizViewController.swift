@@ -12,12 +12,9 @@ final class MovieQuizViewController: UIViewController {
             textLabel.text = convert(model: questions[currentQuestionIndex]).question
             counterLabel.text = convert(model: questions[currentQuestionIndex]).questionNumber
         }
-    override func viewWillAppear(_ animated: Bool) {
-      super.viewWillAppear(animated)
-    }
   
-    @IBOutlet weak var noButton: UIButton!
-    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet private var noButton: UIButton!
+    @IBOutlet private var yesButton: UIButton!
     
     
     @IBOutlet private var imageView: UIImageView!
@@ -27,7 +24,7 @@ final class MovieQuizViewController: UIViewController {
     
     
     @IBAction private func yesButtonClicked(_ sender: UIButton) {
-            showAnswerResult(isCorrect: questions[currentQuestionIndex].correctAnswer)
+        showAnswerResult(isCorrect: questions[currentQuestionIndex].correctAnswer)
         }
         @IBAction private func noButtonClicked(_ sender: UIButton) {
             showAnswerResult(isCorrect: !questions[currentQuestionIndex].correctAnswer)
@@ -64,10 +61,15 @@ final class MovieQuizViewController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 8
         imageView.layer.borderColor = isCorrect ? UIColor.ypGreen?.cgColor : UIColor.ypRed?.cgColor
+        yesButton.isEnabled = false
+        noButton.isEnabled = false
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            
             self.showNextQuestionOrResults()
             self.imageView.layer.borderWidth = 0
+            self.yesButton.isEnabled = true
+            self.noButton.isEnabled = true
         }
     }
 
