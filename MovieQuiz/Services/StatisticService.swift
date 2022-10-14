@@ -19,12 +19,10 @@ struct GameRecord: Codable {
     var total: Int
     let date: String
         
-        
        static func bestResult(current: GameRecord, previous: GameRecord) -> Bool {
             return current.correct > previous.correct
         }
      }
-
 
 final class StatisticServiceImplementation: StatisticService {
     private enum Keys: String {
@@ -35,7 +33,9 @@ final class StatisticServiceImplementation: StatisticService {
     
     var totalAccuracy: Double {
         get {
-            return (Double(bestGame.correct) / Double(bestGame.total)) * 100
+            let correct = userDefaults.integer(forKey: Keys.correct.rawValue)
+            let total = userDefaults.integer(forKey: Keys.total.rawValue)
+            return (Double(correct) / Double(total)) * 100
         }
     }
     
@@ -68,14 +68,25 @@ final class StatisticServiceImplementation: StatisticService {
     
     func store(correct count: Int, total amount: Int) {
         let gameRecord = GameRecord(correct: count, total: amount, date: Date().dateTimeString)
+        let BestRecord = GameRecord.bestResult(current: gameRecord, previous: bestGame)
         
-        if bestGame.correct >= gameRecord.correct {
-            userDefaults.set(bestGame.correct, forKey: Keys.bestGame.rawValue)
-            userDefaults.set(bestGame.total, forKey: Keys.bestGame.rawValue)
-            userDefaults.set(bestGame.date, forKey: bestGame.date)
-        } else  {
+        if BestRecord {
+            bestGame = gameRecord
+        } else {
             print("Невозможно сохранить результат")
         }
+        
+        let correct = userDefaults.integer(forKey: Keys.correct.rawValue)
+        let total = userDefaults.integer(forKey: Keys.total.rawValue)
+        
+        let newCorrect = correct + count
+        let newTotal = total + amount
+        
+        userDefaults.set(newCorrect, forKey: Keys.correct.rawValue)
+        userDefaults.set(newTotal, forKey: Keys.total.rawValue)
+        
     }
+    
+    
   
 }

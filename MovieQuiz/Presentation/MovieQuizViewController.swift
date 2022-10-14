@@ -41,16 +41,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     
     override func viewDidLoad() {
             super.viewDidLoad()
-        
-//        let fileManager = FileManager.default
-//        let docDir = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
-//        let fileName = "inception.json"
-//        guard let jsonStringUrl = docDir?.appendingPathComponent(fileName) else { return}
-//        guard let jsonString = try? String(contentsOf: jsonStringUrl) else { return}
-//        let data = jsonString.data(using: .utf8)!
 
-
-        
         questionFactory = QuestionFactory(delegate: self)
         questionFactory?.requestNextQuestion()
         alertPresenter = AlertPresenter(deligate: self)
@@ -83,16 +74,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         self.questionFactory?.requestNextQuestion()
     }
     alertPresenter?.showAlert(model: alertModel)
-//            let alert = UIAlertController(title: result.title, message: result.text, preferredStyle: .alert)
-//            let action = UIAlertAction(title: result.buttonText, style: .default, handler: {[weak self] _ in
-//                guard let self = self else { return }
-//                self.currentQuestionIndex = 0
-//                self.correctAnswers = 0
-//                self.questionFactory?.requestNextQuestion()
-//            })
-//
-//            alert.addAction(action)
-//            self.present(alert, animated: true, completion: nil)
+
     }
 
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
@@ -131,15 +113,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
                 statisticService.gamesCount += 1
             }
             
-            let record = GameRecord(correct: correctAnswers, total: questionsAmount, date: Date().dateTimeString)
-            
             statisticService.store(correct: correctAnswers, total: questionsAmount)
-            
-            let bestRecord = GameRecord.bestResult(current: record, previous: statisticService.bestGame)
-            
-            if bestRecord {
-                statisticService.bestGame = record
-            }
             
             let text = "Ваш результат: \(correctAnswers) из \(questionsAmount)\nКоличество сыграных квизов: \(statisticService.gamesCount)\nРекорд:  \(statisticService.bestGame.correct)/\(questionsAmount) \(statisticService.bestGame.date)\nСредняя точность: \(String(format: "%.2f", statisticService.totalAccuracy as CVarArg))%"
             let viewModel = QuizResultsViewModel(title: "Этот раунд окончен!", text: text, buttonText: "Сыграть еще раз")
