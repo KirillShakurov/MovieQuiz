@@ -18,8 +18,8 @@ struct GameRecord: Codable {
     let correct: Int
     var total: Int
     let date: String
-        
-       static func bestResult(current: GameRecord, previous: GameRecord) -> Bool {
+    
+    static func bestResult(current: GameRecord, previous: GameRecord) -> Bool {
             return current.correct > previous.correct
         }
      }
@@ -86,7 +86,4 @@ final class StatisticServiceImplementation: StatisticService {
         userDefaults.set(newTotal, forKey: Keys.total.rawValue)
         
     }
-    
-    
-  
 }
