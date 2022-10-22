@@ -10,9 +10,9 @@ import UIKit
 
 class AlertPresenter: AlertPresenterProtocol {
    
-    weak var deligate: AlertPresenterDelegate?
-    init (deligate: AlertPresenterDelegate?) {
-        self.deligate = deligate
+    weak var delegate: AlertPresenterDelegate?
+    init (delegate: AlertPresenterDelegate?) {
+        self.delegate = delegate
     }
     func showAlert(model: AlertModel) {
         let alert = UIAlertController (title:model.title, message: model.message, preferredStyle: .alert)
@@ -21,7 +21,7 @@ class AlertPresenter: AlertPresenterProtocol {
         }
         alert.addAction(action)
         
-        deligate?.didAlert(alert: alert)
+        delegate?.didAlert(alert: alert)
     }
     
     

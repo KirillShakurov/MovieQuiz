@@ -26,8 +26,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         
         imageView.layer.cornerRadius = 20
         questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
-        statisticService = StatisticServiceImplementation()
-        alertPresenter = AlertPresenter(deligate: self)
+        alertPresenter = AlertPresenter(delegate: self)
         questionFactory?.loadData()
         showLoadingIndicator()
     }
@@ -68,10 +67,13 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
                                message: message,
                                buttonText: "Попробовать еще раз") { [weak self] in
             guard let self = self else { return }
-            self.questionFactory?.requestNextQuestion()
+            self.showLoadingIndicator()
+            self.questionFactory?.loadData()
         }
+        DispatchQueue.main.async { [weak self] in
+            self?.alertPresenter?.showAlert(model: model)
+                }
         
-        alertPresenter?.showAlert(model: model)
     }
     
     private func show(quiz result: QuizResultsViewModel) {
@@ -128,6 +130,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         } else {
             currentQuestionIndex += 1
             questionFactory?.requestNextQuestion()
+            
+            
         }
         
     }
@@ -152,7 +156,10 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     }
     
     func didLoadDataFromServer() {
-        activityIndicator.isHidden = true
+        DispatchQueue.main.async { [weak self] in
+            self?.activityIndicator.isHidden = true
+        }
+        
         questionFactory?.requestNextQuestion()
         
     }
