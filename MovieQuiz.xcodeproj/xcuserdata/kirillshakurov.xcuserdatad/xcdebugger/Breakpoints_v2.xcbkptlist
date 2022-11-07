@@ -7,17 +7,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F421F399-FAEB-4468-B579-011AA2DC39BE"
+            uuid = "5915CB12-2A19-4384-9830-CAFC10D4EA31"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieQuiz/Presentation/MovieQuizViewController.swift"
+            filePath = "MovieQuizUITests1/MovieQuizUITests1.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "testNoButton()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5915CB12-2A19-4384-9830-CAFC10D4EA31 - c7224dc7aa45dec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MovieQuizUITests1.MovieQuizUITests.testNoButton() throws -&gt; ()"
+                  moduleName = "MovieQuizUITests1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kirillshakurov/Documents/MyStudyEx5/MovieQuizUITests1/MovieQuizUITests1.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "5915CB12-2A19-4384-9830-CAFC10D4EA31 - c7224dc7aa45dec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MovieQuizUITests1.MovieQuizUITests.testNoButton() throws -&gt; ()"
+                  moduleName = "MovieQuizUITests1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kirillshakurov/Documents/MyStudyEx5/MovieQuizUITests1/MovieQuizUITests1.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
