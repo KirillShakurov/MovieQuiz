@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class MovieQuizPresenter {
+final class MovieQuizPresenter: QuestionFactoryDelegate {
     let questionsAmount: Int = 10
     var currentQuestionIndex: Int = 0
     var currentQuestion: QuizQuestion?
@@ -16,7 +16,38 @@ final class MovieQuizPresenter {
     var correctAnswers: Int = 0
     var statisticService: StatisticService = StatisticServiceImplementation()
     var questionFactory: QuestionFactoryProtocol?
+        
+    init(viewController: MovieQuizViewController) {
+            self.viewController = viewController
 
+            questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
+            questionFactory?.loadData()
+            viewController.showLoadingIndicator()
+        }
+        
+        // MARK: - QuestionFactoryDelegate
+        
+        func didLoadDataFromServer() {
+            viewController?.hideLoadingIndicator()
+            questionFactory?.requestNextQuestion()
+        }
+        
+        func didFailToLoadData(with error: Error) {
+            let message = error.localizedDescription
+            viewController?.showNetworkError(message: message)
+        }
+    
+    func didReceiveNextQuestion(question: QuizQuestion?) {
+        guard let question = question else {
+            return
+        }
+        
+        currentQuestion = question
+        let viewModel = convert(model: question)
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.show(quiz: viewModel)
+        }
+    }
     
     func yesButtonClicked() {
         didAnswer(isYes: true)
@@ -35,17 +66,7 @@ final class MovieQuizPresenter {
             viewController?.showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
         }
     
-    func didReceiveNextQuestion(question: QuizQuestion?) {
-        guard let question = question else {
-            return
-        }
-        
-        currentQuestion = question
-        let viewModel = convert(model: question)
-        DispatchQueue.main.async { [weak self] in
-            self?.viewController?.show(quiz: viewModel)
-        }
-    }
+
     
     func showNextQuestionOrResults() {
         
@@ -69,6 +90,11 @@ final class MovieQuizPresenter {
         
     }
     
+    func restartGame() {
+        currentQuestionIndex = 0
+        correctAnswers = 0
+        questionFactory?.requestNextQuestion()
+    }
     
    func convert(model: QuizQuestion) -> QuizStepViewModel {
         return QuizStepViewModel(
